@@ -9,14 +9,17 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<Map<String, String>> datas = [];
+  String currentLocation;
 
-  int _currentPageIndex;
-
+  final Map<String, String> locationTypeToString = {
+    "ara": "아라동",
+    "ora": "오라동",
+    "donam": "도남동"
+  };
   @override
   void initState() {
-    // sfl 위젯시작할때 미리결정된다
     super.initState();
-    //_currentPageIndex = 0;
+    currentLocation = 'ara';
     datas = [
       {
         "cid": "1",
@@ -181,51 +184,12 @@ class _HomeState extends State<Home> {
     ];
   }
 
-  Widget _appbarWidget() {
-    return AppBar(
-      elevation: 1.0,
-      title: GestureDetector(
-        onTap: () {
-          print('click');
-        },
-        onLongPress: () {
-          print('long click');
-        },
-        child: Row(children: [
-          Text(
-            '아라동',
-            //style: TextStyle(color: Colors.black),
-          ),
-          Icon(Icons.arrow_drop_down),
-        ]),
-      ),
-
-      // backgroundColor: Colors.white,
-
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.search),
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.tune),
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: SvgPicture.asset(
-            'assets/svg/bell.svg',
-            width: 22.0,
-          ),
-        ),
-      ],
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: _appbarWidget(),
+      body: _bodyWidget(),
     );
-  }
-
-  final oCcy = new NumberFormat(
-      "#,###", "ko_KR"); // 스트링을 원화 포멧으로 바꿔준다 import 'package:intl/intl.dart';
-  String calculStringToWon(String price) {
-    return "${oCcy.format(int.parse(price))} 원"; //int.parse() 인트로 바꿔준다
   }
 
   Widget _bodyWidget() {
@@ -317,49 +281,76 @@ class _HomeState extends State<Home> {
     );
   }
 
-  BottomNavigationBarItem _bottomNavigationBarItem(
-      String iconName, String label) {
-    return BottomNavigationBarItem(
-        icon: Padding(
-          padding: const EdgeInsets.only(bottom: 5.0), //바텀 내비 라벨 과 svg 사이간격 올림
-          child: SvgPicture.asset(
-            'assets/svg/${label}_off.svg',
-            width: 22,
-            height: 22,
+  final oCcy = new NumberFormat(
+      "#,###", "ko_KR"); // 스트링을 원화 포멧으로 바꿔준다 import 'package:intl/intl.dart';
+  String calculStringToWon(String price) {
+    return "${oCcy.format(int.parse(price))} 원"; //int.parse() 인트로 바꿔준다
+  }
+
+  Widget _appbarWidget() {
+    return AppBar(
+      elevation: 1.0,
+      title: GestureDetector(
+        onTap: () {
+          print('click');
+        },
+        onLongPress: () {
+          print('long click');
+        },
+        child: PopupMenuButton<String>(
+          offset: Offset(0, 20), // 상자가나오는데  위치이동시킴
+          shape: ShapeBorder.lerp(
+              //테두리설정
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              1),
+          onSelected: (String where) {
+            print(where);
+            setState(() {
+              currentLocation = where;
+            });
+          },
+          itemBuilder: (BuildContext context) {
+            return [
+              PopupMenuItem(
+                value: "ara",
+                child: Text('아라동'),
+              ),
+              PopupMenuItem(
+                value: "ora",
+                child: Text('오라동'),
+              ),
+              PopupMenuItem(
+                value: "donam",
+                child: Text('도남동'),
+              ),
+            ];
+          },
+          child: Row(children: [
+            Text(
+              locationTypeToString[currentLocation],
+            ),
+            Icon(Icons.arrow_drop_down),
+          ]),
+        ),
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.search),
+        ),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.tune),
+        ),
+        IconButton(
+          onPressed: () {},
+          icon: SvgPicture.asset(
+            'assets/svg/bell.svg',
+            width: 22.0,
           ),
         ),
-        label: iconName);
-  }
-
-  Widget _bottomNavigationBarWidget() {
-    return BottomNavigationBar(
-        type: BottomNavigationBarType.fixed, // lavel 과 아이콘 정렬해준다
-        onTap: (int index) {
-          // 홈이나 동내생활등에 페이지를 지정해준다 items 순서로 0.1.2
-          print(index);
-          setState(() {
-            _currentPageIndex = index;
-          });
-        },
-        currentIndex: _currentPageIndex, // 현제 인덱스갑 설정
-        selectedFontSize: 15, // laval 크기선택
-        selectedItemColor: Colors.black, //현제 페이지 의 iconname 값이 강조됨
-        // selectedLabelStyle: TextStyle(color: Colors.black),
-        items: [
-          _bottomNavigationBarItem('동네 생활', 'notes'),
-          _bottomNavigationBarItem('홈', 'home'),
-          _bottomNavigationBarItem('내 근처', 'location'),
-          _bottomNavigationBarItem('채팅', 'chat'),
-          _bottomNavigationBarItem('나의 당근', 'user'),
-        ]);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _appbarWidget(),
-      body: _bodyWidget(),
-      bottomNavigationBar: _bottomNavigationBarWidget(),
+      ],
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:clone_app/page/home.dart';
+import 'package:clone_app/page/app.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.white,
         primarySwatch: Colors.blue,
       ),
-      home: Home(),
+      home: App(),
     );
   }
 }
