@@ -169,10 +169,15 @@ class _HomeState extends State<Home> {
                     //이미지편집
                     borderRadius: BorderRadius.all(
                         Radius.circular(10.0)), // 이미지 모서리 둥굴기설정
-                    child: Image.asset(
-                      datas[index]["image"],
-                      width: 70,
-                      height: 70,
+                    child: Hero(
+                      // 이미지파일에 히어로 효과를 준다
+                      tag: datas[index]
+                          ["cid"], //tag는 반드시와야함 데그 데이터를 위해서 cid 입력 중복 x
+                      child: Image.asset(
+                        datas[index]["image"],
+                        width: 70,
+                        height: 70,
+                      ),
                     )),
                 // SizedBox(  이미지와 텍스트 사이
                 //   width: 10,
