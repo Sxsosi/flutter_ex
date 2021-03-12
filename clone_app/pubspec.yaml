@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  carousel_slider: ^3.0.0
   intl: ^0.17.0
   flutter_svg: ^0.19.3
   flutter:
