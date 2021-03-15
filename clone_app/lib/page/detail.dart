@@ -1,3 +1,4 @@
+import 'package:clone_app/componetnts/maner_tempe.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart'; // 이미지 넘기는데 쓰인다
 
@@ -56,7 +57,46 @@ class _DetailContentViewState extends State<DetailContentView> {
     );
   }
 
-  Widget _bodyWidget() {
+  Widget _sellerInfo() {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 18, //크기조절
+
+            backgroundImage:
+                Image.asset("assets/images/user.png").image, //이미지 프로바이더 써야하기때문에
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "kkangmin19",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold, // 글씨두깨
+                ),
+              ),
+              Text(
+                "jeju dodam",
+              ),
+            ],
+          ),
+          Expanded(
+            child: ManerTemp(
+              sellerMannerTemp: 37.5,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _makeSliderImage() {
     return Container(
       child: Stack(
         // 이미지와 이미지넘기는표시가 같이 있어야하기때문에
@@ -114,6 +154,15 @@ class _DetailContentViewState extends State<DetailContentView> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _bodyWidget() {
+    return Column(
+      children: [
+        _makeSliderImage(),
+        _sellerInfo(),
+      ],
     );
   }
 
