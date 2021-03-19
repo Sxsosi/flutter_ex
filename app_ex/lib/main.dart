@@ -1,6 +1,7 @@
 import 'package:app_ex/src/home.dart';
 import 'package:app_ex/src/provider/bottom_navi_provider.dart';
 import 'package:app_ex/src/provider/count_provider.dart';
+import 'package:app_ex/src/provider/movie_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,6 +27,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (BuildContext context) {
             return BottomNavigationProvider();
+          },
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) {
+            return MovieProvider();
           },
         ),
       ],

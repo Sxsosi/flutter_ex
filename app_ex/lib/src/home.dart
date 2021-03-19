@@ -18,8 +18,9 @@ class Home extends StatelessWidget {
     // 프로바이더 불러오는법 즉 듣고있다가됨
     //이것을 사용해서 하면 리빌드가 되버림
     // 리빌드 막을경우 listen : false 를 해줘야함
-    _bottomNavigationProvider =
-        Provider.of<BottomNavigationProvider>(context, listen: false);
+    _bottomNavigationProvider = Provider.of<BottomNavigationProvider>(
+      context,
+    );
 
     // 자 여기서 ChangeNotifier 가 뿌려준 변수값을 뿌려주는 위치이다
     return Scaffold(
@@ -58,6 +59,7 @@ class Home extends StatelessWidget {
       ],
 
       currentIndex: _bottomNavigationProvider.currentPage,
+
       //.currentpage 는 povider 에서 get 함수를 이용해서 리턴된 _index 값이다
       //provider 사용 해야함 따로 클래스로 만들어주자
       //처음이 0 다음은 1 이렇게 숫자로 올라가는데 이것을 provider 를 사용해서
@@ -66,6 +68,7 @@ class Home extends StatelessWidget {
       onTap: (index) {
         //provider navigation state;
         _bottomNavigationProvider.updateCurrentPage(index);
+
         //여기서도 변수.함수 가 호출된다 인데스값을 받아서 BottomNavigationProvider
         //클래스에 변수 _index 값을 집어넣어주고 notifyListeners() 함수를 통해서
         //ChangeNotifier에 _index 값이 주입된다
