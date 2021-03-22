@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx/src/home.dart';
-import 'package:flutter_getx/src/normal/frist.dart';
+
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
 

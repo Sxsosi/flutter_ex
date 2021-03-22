@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx/src/home.dart';
-import 'package:flutter_getx/src/normal/frist.dart';
+
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +22,8 @@ class SecondNamedPage extends StatelessWidget {
             ),
             RaisedButton(
               onPressed: () {
-                Get.offAll(Home());
+                //Get.offAll(Home());
+                Get.offAllNamed('/'); //getx named home 으로갈때
               },
               child: Text('홈이동'),
             ),
