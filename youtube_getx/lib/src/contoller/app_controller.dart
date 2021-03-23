@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:youtube_getx/componets/youtube_bottom_sheet.dart';
@@ -33,5 +31,6 @@ class AppController extends GetxService {
 
   Widget _showBottomSheet() {
     Get.bottomSheet(YoutubeBottomSheet());
+    //Get 에는 bottomSheet 가있는데 호출을 컨트롤러에서 함
   }
 }

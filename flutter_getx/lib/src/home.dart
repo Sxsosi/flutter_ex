@@ -44,8 +44,7 @@ class Home extends StatelessWidget {
             ),
             RaisedButton(
               onPressed: () {
-                Get.toNamed(
-                    '/user/233?name=khwoo&age=40&uid=233'); //parameter 도 넘길수있음
+                Get.toNamed('/user/233?name=khwoo&age=40'); //parameter 도 넘길수있음
               },
               child: Text('동적 url 전달 '),
             ),

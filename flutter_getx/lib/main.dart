@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
             page: () => NextNamedPage(),
             transition: Transition.cupertino),
         GetPage(
-            name: '/user/233',
+            name: '/user/:uid',
             page: () => UserNamedPage(),
             transition: Transition.cupertino),
         GetPage(

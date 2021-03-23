@@ -15,8 +15,8 @@ class UserNamedPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('${Get.parameters['uid']}'),
-            Text('${Get.parameters['name']}'),
-            Text('${Get.parameters['age']}'), // kkang 이란 데이터 옴겨주며 페이지이동가능
+            //Text(Get.parameters['name']),
+            //Text(Get.parameters['age']), // kkang 이란 데이터 옴겨주며 페이지이동가능
             RaisedButton(
               onPressed: () {
                 //Get.toNamed('/s');
