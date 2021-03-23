@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity),
       //initialRoute: '/',
-      initialBinding: InitBinding(), //binding 여기서 해줌
+      initialBinding: InitBinding(),
+      //binding 안에 Get.put(AppController()) 시작하자마자 전체 앱에서 인식하게 할꺼야
       getPages: [GetPage(name: '/', page: () => App())],
     );
   }
