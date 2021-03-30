@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:youtube_getx/src/models/video.dart';
 
 class VideoWidget extends StatelessWidget {
+  final Video video;
+  //받아줘야지요 넘겨준값을
+  const VideoWidget({Key key, this.video}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,6 +22,11 @@ class VideoWidget extends StatelessWidget {
     return Container(
       height: 250,
       color: Colors.grey.withOpacity(0.5),
+      child: Image.network(
+        video.snippet.thumbnails.medium.url,
+        fit: BoxFit.fitWidth,
+        //썸네일 등록
+      ),
     );
   }
 
@@ -47,7 +57,8 @@ class VideoWidget extends StatelessWidget {
                       //maxLines 가 먹히지 않을경우 expanded 로 영역을 줘야한다
                       //iconbutton 의 영역이 정해져 있기 때문에 나머지를 쓴다는거다
                       child: Text(
-                        '개남 유튜브 다시보기개남 유튜브 다시보기개남 유튜브 다시보기개남 유튜브 다시보기개남 유튜브 다시보기개남 유튜브 다시보기개남 유튜브 다시보기개남 유튜브 다시보기',
+                        video.snippet.title,
+                        //썸네일에대한 타이틀 뿌려준다
                         maxLines: 2,
                       ),
                     ),
@@ -65,7 +76,7 @@ class VideoWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      '개발하는 남자',
+                      video.snippet.channelTitle,
                       style: TextStyle(
                           fontSize: 12, color: Colors.black.withOpacity(0.8)),
                     ),
@@ -77,7 +88,8 @@ class VideoWidget extends StatelessWidget {
                     ),
                     Text(' . '),
                     Text(
-                      '2021-02-13',
+                      DateFormat('yyyy-MM-dd')
+                          .format(video.snippet.publishTime),
                       style: TextStyle(
                           fontSize: 12, color: Colors.black.withOpacity(0.4)),
                     ),
